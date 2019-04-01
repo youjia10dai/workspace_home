@@ -1,0 +1,4 @@
+JSONObject，JSONArray是JSON的两个子类。
+
+JSONObject 相当于Map
+JSONArray  相当于List

@@ -1,0 +1,577 @@
+打开"运行"对话框（Win+R），输入cmd，打开控制台命令窗口...
+
+也可以通过cmd /c 命令 和 cmd /k 命令的方式来直接运行命令
+
+注：/c表示执行完命令后关闭cmd窗口；/k表示执行完命令后保留cmd窗口
+
+# 控制台命令窗口中一些技巧
+
+复制内容：右键弹出快捷菜单，选择“标记(K)”，然后选中所需复制的内容，然后右键即可
+
+粘贴内容：右键弹出快捷菜单，选择“粘贴(P)”
+
+在文件夹空白处按住Shift，然后右键弹出快捷菜单，可以看到“在此处打开命令行窗口”
+
+使用上下方向键，翻看使用过的命令
+
+tab补齐功能
+
+命令参数的路径：要使用反斜杠'\'，不要使用正斜杠'/'   如：del d:\test2\file\my.txt
+
+命令参数的路径：若存在空格，应使用双引号将路径引起来  如：del "d:\program files\file\my.txt"
+
+文件及目录名中不能包含下列任何字符：\ / : * ? " < > |
+
+rem  // 在批处理文件中添加注解，其后的命令不会被执行，但会回显
+
+::  // ::也可以起到rem的注释作用，且不会有回显
+
+任何以冒号:开头的字符行, 在批处理中都被视作标号（label）, 而直接忽略其后的所有内容
+有效标号：冒号后紧跟一个以字母数字开头的字符串，goto语句可以识别
+无效标号：冒号后紧跟一个非字母数字的一个特殊符号，goto无法识别的标号，可以起到注释作用，::常被用作注释符号
+
+0. 获取帮助
+
+command /?  // 查看command命令帮助说明
+
+1. 中断命令执行
+
+Ctrl + Z
+
+2. 文件/目录
+
+cd   切换目录
+
+例：cd   // 显示当前目录
+
+例：cd ..   // 进入父目录
+
+例：cd /d d:   // 进入上次d盘所在的目录（或在直接输入：d:）
+
+例：cd /d d:\   // 进入d盘根目录
+
+例：cd d: // 显示上次d盘所在的目录
+
+例：cd /d d:\src // 进入d:\src目录
+
+例：cd prj\src\view  // 进入当前目录下的prj\src\view文件夹
+
+pushd  popd  使用栈来维护当前目录
+
+md d:\mp3 // 在C:\建立mp3文件夹
+md d:\mp4 // 在D:\建立mp4文件夹
+cd /d d:\mp4 // 更改当前目录为d:\mp4
+pushd c:\mp3 // 将当前目录d:\mp4入栈，并切换当前目录为c:\mp3
+popd  // 将刚才保存的d:\mp4弹栈，并设置为当前目录
+
+dir  显示目录中的内容
+
+例：dir   // 显示当前目录中的子文件夹与文件
+
+例：dir /b  // 只显示当前目录中的子文件夹与文件的文件名
+
+例：dir /p  // 分页显示当前目录中的子文件夹与文件
+
+例：dir /ad  // 显示当前目录中的子文件夹
+
+例：dir /a-d  // 显示当前目录中的文件
+
+例：dir c:\test   // 显示c:\test目录中的内容
+
+例：dir keys.txt  // 显示当前目录中keys.txt的信息
+
+例：dir /S   // 递归显示当前目录中的内容
+
+例：dir key*  // 显示当前目录下以key开头的文件和文件夹的信息
+
+例：dir /AH /OS  // 只显示当前目录中隐藏的文件和目录，并按照文件大小从小到大排序
+
+tree 显示目录结构
+
+例：tree d:\myfiles  // 显示d:\myfiles目录结构
+
+ren  文件或目录重命名
+
+例：ren rec.txt rec.ini  // 将当前目录下的rec.txt文件重命名为rec.ini
+
+例：ren c:\test test_01  // 将c盘下的test文件夹重命名为test_01
+
+例：ren Logs.txt Logs-%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%.txt  // 将当前目录下的Logs.txt文件重命名为Logs-20150114_2135.txt或Logs-20150114_ 812.txt（注意：小时只有个位数时会多一个空格，可以使用字符串替换：将空格替换成0）
+
+md  创建目录
+
+例：md movie music  // 在当前目录中创建名为movie和music的文件夹
+
+例：md d:\test\movie  // 创建d:\test\movie目录
+
+rd  删除目录
+
+例：rd movie // 删除当前目录下的movie空文件夹
+
+例：rd /s /q d:\test  // 使用安静模式删除d:\test（除目录本身外，还将删除指定目录下的所有子目录和文件）
+
+copy 拷贝文件
+
+例：copy key.txt c:\doc  // 将当前目录下的key.txt拷贝到c:\doc下（若doc中也存在一个key.txt文件，会询问是否覆盖）
+
+例：copy jobs c:\doc  // 将当前目录下jobs文件夹中文件（不递归子目录）拷贝到c:\doc下（若doc中也存在相应的文件，会询问是否覆盖）
+
+例：copy key.txt c:\doc\key_bak.txt  // 将当前目录下的key.txt拷贝到c:\doc下，并重命名为key_bak.txt（若doc中也存在一个key_bak.txt文件，会询问是否覆盖）
+
+例：copy /Y key.txt c:\doc  // 将当前目录下的key.txt拷贝到c:\doc下（不询问，直接覆盖写）
+
+例：copy key.txt +  // 复制文件到自己，实际上是修改了文件日期
+
+例：copy /Y key1.txt + key2.txt key.txt  // 将当前目录下的key1.txt与key2.txt的内容合并写入key.txt中（不询问，直接覆盖写）
+
+例：copy /B art_2.7z.* art_2.7z    // 将当前目录下的art_2.7z.开头的所有文件（按照名称升序排序）依次合并生成art_2.7z
+
+例：copy /B art_2.7z.001+art_2.7z.002 art_2.7z    // 将当前目录下的art_2.7z.001、art_2.7z.002文件合并生成art_2.7z
+
+xcopy  更强大的复制命令
+
+例：xcopy c:\bat\hai d:\hello\ /s /h /e /f /c    // 将c:\bat\hai中的所有内容拷贝到d:\hello中  注意：需要在hello后加上\  表示hello为一个目录，否则xcopy会询问hello是F，还是D
+
+例：xcopy c:\bat\hai d:\hello\ /d:12-29-2010  // 将c:\bat\hai中的2010年12月29日后更改的文件拷贝到d:\hello中
+
+move 移动文件
+
+例：move *.png test  // 将当前目录下的png图片移动到当前目录下test文件夹中 （若test中也存在同名的png图片，会询问是否覆盖）
+
+例：move /Y *.png test  // 将当前目录下的png图片移动到当前目录下test文件夹中 （不询问，直接覆盖写）
+
+例：move 1.png d:\test\2.png  // 将当前目录下的1.png移动到d盘test文件夹中，并重命名为2.png （若test中也存在同名的png图片，会询问是否覆盖）
+
+例：move test d:\new  // 若d盘中存在new文件夹，将当前目录下的test文件夹移动到d盘new文件夹中；若不存在，将当前目录下的test文件夹移动到d盘，并重命名为new
+
+del 删除文件   注意：目录及子目录都不会删除
+
+例：del test  // 删除当前目录下的test文件夹中的所有非只读文件（子目录下的文件不删除；删除前会进行确认；等价于del test\*）
+
+例：del /f test  // 删除当前目录下的test文件夹中的所有文件（含只读文件；子目录下的文件不删除；删除前会进行确认；等价于del /f test\*）
+
+例：del /f /s /q test d:\test2\*.doc  // 删除当前目录下的test文件夹中所有文件及d:\test2中所有doc文件（含只读文件；递归子目录下的文件；删除前不确认）
+
+++++++++++++++++++++++
+
+/ar、/ah、/as、/aa 分别表示删除只读、隐藏、系统、存档文件
+/a-r、/a-h、/a-s、/a-a 分别表示删除除只读、隐藏、系统、存档以外的文件
+
+++++++++++++++++++++++
+
+例：del /ar *.* // 删除当前目录下所有只读文件
+
+例：del /a-s *.* // 删除当前目录下除系统文件以外的所有文件
+
+replace 替换文件【即使这个文件在使用，仍然可以替换成功】
+
+例：replace d:\love.mp3 d:\mp3   // 使用d盘下的love.mp3强制替换d盘mp3目录中的love.mp3文件
+
+mklink  创建符号链接（win7引入）；创建的符号链接文件上会有一个类似快捷方式的箭头
+
+win7下的mklink命令通过指定参数可以建立出不同形式的文件或目录链接，分为硬链接(hard link)、符号链接(symbolic link)和目录联接(junction)三种。
+
+(1) 符号链接(symbolic link)
+
+　建立一个软链接相当于建立一个文件（或目录），这个文件（或目录）用于指向别的文件（或目录），和win的快捷方式有些类似。
+
+  删除这个链接，对原来的文件（或目录）没有影像没有任何影响；而当你删除原文件（或目录）时，再打开链接则会提示“位置不可用”。
+
+(2) 目录联接(junction)
+
+　作用基本和符号链接类似。区别在于，目录联接在建立时会自动引用原目录的绝对路径，而符号链接允许相对路径的引用。
+
+(3) 硬链接(hard link)
+
+　建立一个硬链接相当于给文件建立了一个别名，例如对1.txt创建了名字为2.txt的硬链接；
+
+  若使用记事本对1.txt进行修改，则2.txt也同时被修改，若删除1.txt，则2.txt依然存在，且内容与1.txt一样。
+
+建立链接请注意：
+a、建立文件或目录链接限于 NTFS 文件系统；符号链接（目录联接）的建立可以跨分区（如：在d盘可以建立c盘文件或目录的链接），硬链接只能建立同一分区内的文件指向
+b、硬链接只能用于文件，不能用于目录；目录联接只能用于目录；符号链接则均可以；
+c、硬链接不允许对空文件建立链接，符号（软）链接可以。
+
++++++++++++++++++++++++++++++++++
+
+mklink [[/d] | [/h] | [/j]] Link Target
+
+/d　　 创建目录符号链接。黙认为文件符号链接。
+/h　　 创建硬链接，而不是符号链接。
+/j　　　创建目录联接。
+Link　　指定新的符号链接名称。
+Target　指定新链接引用的路径(相对或绝对)。
+
++++++++++++++++++++++++++++++++++
+
+例：mklink /j "C:\Users" "D:\Users"   // 创建D盘Users目录联接到C盘，并命名为Users
+
+attrib  查看或修改文件或目录的属性  【A：存档  R：只读  S：系统  H：隐藏】
+
+例：attrib 1.txt   // 查看当前目录下1.txt的属性
+
+例：attrib -R 1.txt  // 去掉1.txt的只读属性
+
+例：attrib +H movie  // 隐藏movie文件夹
+
+assoc 设置'文件扩展名'关联到的'文件类型'
+
+例：assoc // 显示所有'文件扩展名'关联
+
+例：assoc .txt // 显示.txt代表的'文件类型'，结果显示.txt=txtfile
+
+例：assoc .doc // 显示.doc代表的'文件类型'，结果显示.doc=Word.Document.8
+
+例：assoc .exe // 显示.exe代表的'文件类型'，结果显示.exe=exefile
+
+例：assoc .txt=txtfile  // 恢复.txt的正确关联
+
+ftype 设置'文件类型'关联到的'执行程序和参数'
+
+例：ftype // 显示所有'文件类型'关联
+
+例：ftype exefile // 显示exefile类型关联的命令行，结果显示 exefile="%1" %*
+
+例：ftype txtfile=C:\Windows\notepad.exe %1 // 设置txtfile类型关联的命令行为：C:\Windows\notepad.exe %1
+
+当双击一个.txt文件时，windows并不是根据.txt直接判断用notepad.exe打开
+而是先判断.txt属于txtfile'文件类型'；再调用txtfile关联的命令行：txtfile=%SystemRoot%\system32\NOTEPAD.EXE %1
+
+3. 文件查看
+
+type 显示文本文件内容
+
+例：type c:\11.txt   // 显示c盘中11.txt的文本内容
+
+例：type conf.ini  // 显示当前目录下conf.ini的文本内容
+
+例：type c:\11.txt | more  // 分页显示c盘中11.txt的文本内容
+
+more 逐屏的显示文本文件内容
+
+例：more conf.ini  //  逐屏的显示当前目录下conf.ini的文本内容   【空格：下一屏 q：退出 】
+
+4. 注册表命令
+
+reg 注册表相关操作
+
+参数说明：
+
+KeyName [\Machine]FullKey
+           Machine为远程机器的机器名 - 忽略默认到当前机器。
+           远程机器上只有 HKLM 和 HKU。
+           FullKey ROOTKEY+SubKey
+           ROOTKEY [ HKLM | HKCU | HKCR | HKU | HKCC ]
+           SubKey 所选ROOTKEY下注册表项的完整名
+/v        所选项之下要添加的值名
+/ve      为注册表项添加空白值名<无名称>
+/t        RegKey 数据类型
+           [ REG_SZ | REG_MULTI_SZ | REG_DWORD_BIG_ENDIAN |
+           REG_DWORD | REG_BINARY | REG_DWORD_LITTLE_ENDIAN |
+           REG_NONE | REG_EXPAND_SZ ]
+           如果忽略，则采用 REG_SZ
+/s        指定一个在 REG_MULTI_SZ 数据字符串中
+           用作分隔符的字符；如果忽略，则将""用作分隔符
+/d        要分配给添加的注册表ValueName的数据
+/f        不提示，强行改写现有注册表项
+
+例：reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v MyApp /t REG_SZ /d "c:\tools\myapp.exe" /f  // 强制添加一条开机启动c:\tools\myapp.exe程序的注册表项
+
+例：reg add "HKLM\SOFTWARE\ScmClient" /v AgreementConfirmed /t REG_SZ /d 1 /f  // 解决32位xp打开ioa后，弹出的框关不掉问题
+
+例：reg add "HKCU\ControlPanel\Desktop" /v WaitToKIllAppTimeOut /t REG_SZ /d 10000 /f // 强制添加一条加速关闭应用程序的注册表项
+
+例：reg add "HKCR\*\shell\WinDbg\command" /t REG_SZ /d "\"D:\Program Files (x86)\windbg\windbg.exe\" -z \"%1\" " /f    // 强制添加windbg打开dump文件到右键菜单的注册表项（不指明/v，键值将写入默认值名中）
+
+例：reg add "HKCR\*\shell\WinHex\command" /t REG_SZ /d "\"D:\software-setup\system\winhex\winhex.exe\"  \"%1\" " /f    // 强制添加winhex到右键菜单的注册表项（不指明/v，键值将写入默认值名中）
+
+注册表中%1 %2 %3 %4的含义：
+--  %1表示文件列表，%2表示默认打印机，%3表示驱动器，%4表示端口
+
+例：reg add "hkcu\software\microsoft\windows\currentversion\internet settings" /v AutoConfigURL /t REG_SZ /d "http://txp-01.tencent.com/proxy.pac" /f  // 为IE设置代理：http://txp-01.tencent.com/proxy.pac
+
+例：reg add "hkcu\software\Sysinternals\Process Monitor" /v EulaAccepted /t REG_DWORD /d 1 /f  // 为Procmon.exe工具（Process Monitor为其属性面板上的描述名）添加License同意
+
+例：reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v MyApp /f  // 强制删除值名的MyApp的注册表项
+
+例：reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\taskmgr.exe" /f  // 强制删除让任务栏里的任务管理器为灰色的注册表项
+
+例：reg copy "hkcu\software\microsoft\winmine" "hkcu\software\microsoft\winminebk" /s /f  // 强制复制winmine下所有的子项与值到winminebk中
+
+例：reg export "hkcu\software\microsoft\winmine" c:\regbak\winmine.reg  // 导出winmine下所有的子项与值到c:\regbak\winmine.reg文件中
+
+例：reg import c:\regbak\winmine.reg  // 导入c:\regbak\winmine.reg文件到注册表中
+
+例：reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE" /s   // 查询ie的安装路径
+
+例：reg query HKCR\.dsw /ve  // 查询.dsw默认值
+
+例：reg query HKEY_CURRENT_USER\Software\Tencent\QQGame\SYS /v GameDirectory  // 查询QQGame安装路径
+
+5. @#@
+
+&  顺序执行多条命令，而不管命令是否执行成功
+
+例：cd /d d:\src&work.exe /o c:\result.txt  // 先将当前工作目录切换到d:\src下，然后执行work.exe /o c:\result.txt命令
+
+&&  顺序执行多条命令，当碰到执行出错的命令后将不执行后面的命令
+
+例：find "ok" c:\test.txt && echo 成功 // 如果找到了"ok"字样，就显示"成功"，找不到就不显示
+
+||   顺序执行多条命令，当碰到执行正确的命令后将不执行后面的命令
+
+例：find "ok" c:\test.txt || echo 不成功   // 如果找不到"ok"字样，就显示"不成功"，找到了就不显示
+
+|    管道命令
+
+例：dir *.* /s/a | find /c ".exe"   // 先执行dir命令，然后对输出结果（stdout）执行find命令（输出当前文件夹及所有子文件夹里的.exe文件的个数）
+
+例：dir *.* /s/a 2>&1 | find /c ".exe"   // 先执行dir命令，然后对输出结果（stdout）和错误信息（stderr）执行find命令（输出当前文件夹及所有子文件夹里的.exe文件的个数）
+
+>  将当前命令输出以覆盖的方式重定向
+
+例：tasklist > p1.txt   // 将tasklist的输出结果（stdout）以覆盖的方式重定向到p1.txt文件中（注：tasklist的输出结果就不会打印到屏幕上了）
+
+例：tasklist 1> p1.txt  // 等同于：tasklist > p1.txt
+
+例：dir bin 2> p1.txt  // 输出结果（stdout）打印在屏幕上，错误信息（stderr）以覆盖的方式重定向到p1.txt中（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin > p1.txt 2>&1  // 将错误信息（stderr）重定向到输出结果（stdout），然后将输出结果（stdout）以覆盖的方式重定向到p1.txt中（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin 2> p1.txt 1>&2  // 将输出结果（stdout）重定向到错误信息（stderr），然后将错误信息（stderr）以覆盖的方式重定向到p1.txt中（注：bin目录不存在时，会输出错误信息） 注：与上条命令结果一致
+
+例：tasklist >nul   // 屏幕上不打印tasklist的输出结果（stdout），错误信息（stderr）仍会打印
+
+例：dir bin 2>nul   // 屏幕上不打印命令的错误信息（stderr），输出结果（stdout）仍会打印（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin >nul 2>&1   //  将命令的错误信息（stderr）重定向到输出结果（stdout），然后不打印输出结果（stdout）【屏幕上错误信息（stderr）和输出结果（stdout）都不打印】（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin 2>nul 1>&2   //  将命令的输出结果（stdout）重定向到错误信息（stderr），然后不打印错误信息（stderr）【屏幕上错误信息（stderr）和输出结果（stdout）都不打印】（注：bin目录不存在时，会输出错误信息）
+
+>>  将当前命令输出以追加的方式重定向
+
+例：tasklist >> p2.txt   // 将tasklist的输出结果（stdout）以追加的方式重定向到p2.txt文件中（注：tasklist的输出结果就不会打印到屏幕上了）
+
+例：tasklist 1>> p2.txt  // 等同于：tasklist >> p2.txt
+
+例：dir bin 2>> p2.txt  // 输出结果（stdout）打印在屏幕上，错误信息（stderr）以追加的方式重定向到p2.txt中（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin >> p2.txt 2>&1  // 将错误信息（stderr）重定向到输出结果（stdout），然后将输出结果（stdout）以追加的方式重定向到p2.txt中（注：bin目录不存在时，会输出错误信息）
+
+例：dir bin 2>> p2.txt 1>&2  // 将输出结果（stdout）重定向到错误信息（stderr），然后将错误信息（stderr）以追加的方式重定向到p2.txt中（注：bin目录不存在时，会输出错误信息） 注：与上条命令结果一致
+
+<    从文件中获得输入信息，而不是从屏幕上，一般用于date time label等需要等待输入的命令
+
+例：date <temp.txt  // temp.txt中的内容为2005-05-01
+
+编号	Handle	说明
+0	stdin	键盘输入
+1	stdout	在命令提示窗口上打印输出结果（默认）
+2	stderr	在命令提示窗口上打印错误信息（默认）
+3-9	undefined	应用程序自己定义和指定
+ 
+
+@   命令修饰符  在执行命令前，不打印出该命令的内容
+
+例：@cd /d d:\me   // 执行该命令时，不打印出命令的内容：cd /d d:/me
+
+,    在某些特殊的情况下可以用来代替空格使用
+
+例：dir,c:\   // 相当于：dir c:\
+
+;    当命令相同的时候,可以将不同的目标用;隔离开来但执行效果不变。如执行过程中发生错误则只返回错误报告但程序还是会继续执行
+
+例：dir c:\;d:\;e:\   // 相当于顺序执行：dir c:\    dir d:\     dir e:\
+
+echo.   // 输出一个"回车换行"，空白行
+
+echo off   // 后续所有命令在执行前，不打印出命令的内容
+
+echo on   // 后续所有命令在执行前，打印出命令的内容
+
+echo 123   // 输出123到终端屏幕
+
+echo "Hello World!!!"   // 输出Hello World!!!到终端屏幕
+
+echo %errorlevel%   // 每个命令运行结束，可以用这个命令行格式查看返回码；默认值为0，一般命令执行出错会设errorlevel为1
+
+echo test > p1.txt  // 输出test的字符串到当前目录中的p1.txt文件中（以覆盖的方式）
+
+set  // 显示当前用户所有的环境变量
+
+set path // 查看path的环境变量值（准确的说是查看以path开头的环境变量）
+
+set path=    // 清空path变量
+
+set path=d:\execute  // 将path变量设置为d:\execute（注：修改的path只会影响当前回话，也不会存储到系统配置中去；当前cmd窗口关闭，新设置的path也就不存在了）
+
+set path=%path%;d:\execute   // 在path变量中添加d:\execute（注：修改的path只会影响当前回话，也不会存储到系统配置中去；当前cmd窗口关闭，新设置的path也就不存在了）
+
+path // 显示当前path变量的值
+
+path ; // 清除所有搜索路径设置并指示cmd.exe只在当前目录中搜索
+
+path d:\xxx;%PATH%  // 将d:\xxx路径添加到path中
+
+---------------------------------------------------
+
+set p=aa1bb1aa2bb2 // 设置变量p，并赋值为aa1bb1aa2bb2
+
+echo %p% // 显示变量p代表的字符串，即aa1bb1aa2bb2
+
+echo %p:~6% // 显示变量p中第6个字符以后的所有字符，即aa2bb2
+
+echo %p:~6,3% // 显示第6个字符以后的3个字符，即aa2
+
+echo %p:~0,3% // 显示前3个字符，即aa1
+
+echo %p:~-2% // 显示最后面的2个字符，即b2
+
+echo %p:~0,-2% // 显示除了最后2个字符以外的其它字符，即aa1bb1aa2b
+
+echo %p:aa=c% // 用c替换变量p中所有的aa，即显示c1bb1c2bb2
+
+echo %p:aa=% // 将变量p中的所有aa字符串置换为空，即显示1bb12bb2
+
+echo %p:*bb=c% // 第一个bb及其之前的所有字符被替换为c，即显示c1aa2bb2
+
+set p=%p:*bb=c% // 设置变量p，赋值为 %p:*bb=c% ，即c1aa2bb2
+
+set /a p=39 // 设置p为数值型变量，值为39
+
+set /a p=39/10 // 支持运算符，有小数时用去尾法，39/10=3.9，去尾得3，p=3
+
+set /a p=p/10 // 用 /a 参数时，在 = 后面的变量可以不加%直接引用
+
+set /a p="1&0" // &运算要加引号。其它支持的运算符参见set/?
+
+---------------------------------------------------
+
+cls  清除屏幕
+
+ver  显示当前windows系统的版本号
+
+winver  弹框显示当前windows系统信息
+
+vol  显示当前分区的卷标
+
+label  显示当前分区的卷标，同时提示输入新卷标
+
+label c:system  设置c盘的卷标为system
+
+time  显示或设置当前时间
+
+例：time /t  // 显示当前时间
+
+例：time   // 设置新的当前时间（格式：hh:mm:ss），直接回车则表示放弃设置
+
+date  显示或设置当前日期
+
+例：date /t  // 显示当前日期
+
+例：date   // 设置新的当前日期（格式：YYYY/MM/DD），直接回车则表示放弃设置
+
+title 正在做命令行测试  // 修改当前cmd窗口的标题栏文字为正在做命令行测试
+
+prompt orz:   // 将命令提示符修改为orz:
+
+print 1.txt  // 使用设置好的打印机来打印1.txt文本文件
+
+call ff.bat   // 调用执行ff.bat脚本（ff.bat脚本执行完原脚本才会往下执行）
+
+start  运行某程序或命令
+
+例：start /max notepad.exe  // 最大化的方式启动记事本
+
+例：start /min calc.exe   // 最小化的方式启动计算器
+
+例：start  tasklist  // 启动一个cmd实例窗口，并运行tasklist
+
+例：start explorer f:\  // 调用资源管理器打开f盘
+
+例：strat iexplore "www.qq.com"  // 启动ie并打开www.qq.com网址
+
+例：start ff.bat  // 启动开始执行ff.bat（启动ff.bat脚本后，原脚本继续执行，不会等ff.bat脚本执行完）
+
+exit  退出当前cmd窗口实例
+
+例：exit 0  // 退出当前cmd窗口实例，并将过程退出代码设置为0（0表示成功，非0表示失败）
+
+例：exit /B 1  // 退出当前bat脚本，并将ERRORLEVEL系统变量设置为1
+
+pause   暂停批处理程序，并显示出：请按任意键继续....
+
+color  设置当前cmd窗口背景色和前景色（前景色即为字体的颜色）
+
+例：color  // 恢复到缺省设置
+
+例：color 02 // 将背景色设为黑色，将字体设为绿色
+
+--------------------------------------
+0 = 黑色 8 = 灰色
+1 = 蓝色 9 = 淡蓝色
+2 = 绿色 A = 淡绿色
+3 = 浅绿色 B = 淡浅绿色
+4 = 红色 C = 淡红色
+5 = 紫色 D = 淡紫色
+6 = 黄色 E = 淡黄色
+7 = 白色 F = 亮白色
+打开"运行"对话框（Win+R），输入cmd，打开控制台命令窗口...
+
+也可以通过cmd /c 命令 和 cmd /k 命令的方式来直接运行命令
+
+注：/c表示执行完命令后关闭cmd窗口；/k表示执行完命令后保留cmd窗口
+
+# 控制台命令窗口中一些技巧
+
+复制内容：右键弹出快捷菜单，选择“标记(K)”，然后选中所需复制的内容，然后右键即可
+
+粘贴内容：右键弹出快捷菜单，选择“粘贴(P)”
+
+在文件夹空白处按住Shift，然后右键弹出快捷菜单，可以看到“在此处打开命令行窗口”
+
+使用上下方向键，翻看使用过的命令
+
+tab补齐功能
+
+命令参数的路径：要使用反斜杠'\'，不要使用正斜杠'/'   如：del d:\test2\file\my.txt
+
+命令参数的路径：若存在空格，应使用双引号将路径引起来  如：del "d:\program files\file\my.txt"
+
+文件及目录名中不能包含下列任何字符：\ / : * ? " < > |
+
+rem  // 在批处理文件中添加注解，其后的命令不会被执行，但会回显
+
+::  // ::也可以起到rem的注释作用，且不会有回显
+
+任何以冒号:开头的字符行, 在批处理中都被视作标号（label）, 而直接忽略其后的所有内容
+有效标号：冒号后紧跟一个以字母数字开头的字符串，goto语句可以识别
+无效标号：冒号后紧跟一个非字母数字的一个特殊符号，goto无法识别的标号，可以起到注释作用，::常被用作注释符号
+
+0. 获取帮助
+
+command /?  // 查看command命令帮助说明
+
+1. 中断命令执行
+
+Ctrl + Z
+
+2. 文件/目录
+
+cd   切换目录
+
+例：cd   // 显示当前目录
+
+例：cd ..   // 进入父目录
+
+例：cd /d d:   // 进入上次d盘所在的目录（或在直接输入：d:）
+
+例：cd /d d:\   // 进入d盘根目录
+
+例：cd d: // 显示上次d盘所在的目录
+
+例：cd /d d:\src // 进入d:\src目录
+
+例：cd prj\src\view  // 进入当前目录下的prj\src\view文件夹
+
+

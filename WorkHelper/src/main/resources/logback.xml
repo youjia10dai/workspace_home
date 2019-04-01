@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<property name="log_path" value="/data/logs/vwt/cag" />
+	<property name="file_name" value="vwt-web-cag" />
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+
+	<root level="debug">
+		<appender-ref ref="stdout" />
+	</root>
+	
+	<logger name="org.springframework" level="ERROR"/>
+	<logger name="com.alibaba.dubbo" level="ERROR"/>
+	<logger name="org.apache.zookeeper" level="ERROR"/>
+	<logger name="org.I0Itec.zkclient" level="ERROR"/>
+	<logger name="io.netty" level="ERROR"/>
+	<logger name="org.apache.activemq" level="ERROR"/>
+	<logger name="org.apache.hadoop" level="ERROR"></logger>
+</configuration>
