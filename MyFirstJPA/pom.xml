@@ -4,6 +4,7 @@
 	<groupId>cn.itcase.jpa</groupId>
 	<artifactId>MyFirstJPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- JPA 常用API使用 -->
 	<build>
 		<plugins>
 			<!-- 添加项目JDK编译插件 -->

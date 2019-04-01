@@ -4,6 +4,7 @@
 	<groupId>cn.itcast</groupId>
 	<artifactId>OneToOne</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- 演示一对一 -->
 	<build>
 		<plugins>
 			<!-- 添加项目JDK编译插件 -->

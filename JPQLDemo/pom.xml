@@ -4,6 +4,7 @@
 	<groupId>cn.itcast</groupId>
 	<artifactId>JPQLDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- JPQL语句演示 -->
 	<build>
 		<plugins>
 			<!-- 添加项目JDK编译插件 -->

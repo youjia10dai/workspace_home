@@ -22,7 +22,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="123456"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.192:3306/maven"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false"/>
             <!-- 配置JPA实现产品的基本属性。因为使用hibernate，故也就是配置hibernate的基本属性 -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.show_sql" value="true"/>
