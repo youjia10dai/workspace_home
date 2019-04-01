@@ -21,4 +21,11 @@ public interface UsersDao {
 
 	public List<Users> findAll();
 	
+	public Users selectOne(Integer id);
+	
+	public void add(Users u);
+	
+	public int delete(Integer id);
+	
+	public void update(Users u);
 }

@@ -99,6 +99,7 @@ public class JPATest1 {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
 		Person person = em.find(Person.class, 2);
+		//remove方法只能删除托管状态的实体对象
 		em.remove(person); // 删除实体
 		em.getTransaction().commit();
 		em.close();

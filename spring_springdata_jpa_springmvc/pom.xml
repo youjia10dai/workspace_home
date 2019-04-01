@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.qfjy</groupId>
-	<artifactId>spring_jpa_springmvc</artifactId>
+	<artifactId>spring_springdata_jpa_springmvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -100,7 +100,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-		<!-- spring 对jpa的支持 -->
+		<!-- spring 对jpa的支持  对应的版本信息到网上的maven仓库中查看-->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -167,7 +167,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- 测试时,需要web文件 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -177,5 +177,4 @@
 		</dependency>
 
 	</dependencies>
-
 </project>

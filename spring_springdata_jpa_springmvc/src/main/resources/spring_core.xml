@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:redis="http://www.springframework.org/schema/redis"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:redis="http://www.springframework.org/schema/redis"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -16,33 +12,28 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-         
-	 
 
-	
-	<!-- Spring IOC容器 扫描 base-package   url-pattren=**/*.class
-  	 注解：@Repository @Service @Controller  @Compont
-  	 com.qfjy.project.weixin.servlet
-  	 
-  	 作用：SpringIOC容器扫描 创建对象。
-  	 约定大于配置。
-  	 
-  -->
-	<context:component-scan   base-package="com.qfjy"   
+
+
+
+	<!-- Spring IOC容器 扫描 base-package url-pattren=**/*.class 注解：@Repository 
+		@Service @Controller @Compont com.qfjy.project.weixin.servlet 作用：SpringIOC容器扫描 
+		创建对象。 约定大于配置。 -->
+	<context:component-scan base-package="com.qfjy"
 		use-default-filters="true">
 		<!-- exclude-filter是针对include-filter里的内容进行排除 -->
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
- 	<!-- AOP配置    -->
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>  
+	<!-- AOP配置 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-	
+
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
 
-	
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" 
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="driverClassName" value="${jdbc_driver}" />
 		<property name="url" value="${jdbc_url}" />
@@ -78,34 +69,34 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	
-	 <!--3 spring+ jpa整合 -->
-    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
-    <bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    	 <!-- 指定数据源 -->
-    	 <property name="dataSource" ref="dataSource"></property>
-    	<!-- 指定JPA实现产品  -->
-    	<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
-    	<!-- 待扫描的实体类的包 -->
-    	<property name="packagesToScan" value="com.qfjy.bean"></property>
-    	<!-- 设置 自定义配置 hibernate -->
-    	<property name="jpaProperties">
-    		<props>
-    			<prop key="hibernate.show_sql">true</prop>
-    			<prop key="hibernate.format_sql">true</prop>  
-    		</props>
-    	</property>
-    	
-    </bean>
-   <!-- 4 Spring TransctionDataSource
-   	Jpa事务管理 JpaTranscationManager
-    -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-    	<property name="entityManagerFactory" ref="entityManagerFactoryBean"></property>
-    </bean>
-    <!-- 5 声明式注解事务 
-    	transaction-manager="transactionManager" 可以不写,默认就是transactionManager,
-    	这是编码规范SpringBoot-->
-   <tx:annotation-driven transaction-manager="transactionManager"/>
 
+	<!--3 spring+ jpa整合 -->
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+	<bean id="entityManagerFactoryBean"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<!-- 指定数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 指定JPA实现产品 -->
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+		<!-- 待扫描的实体类的包 -->
+		<property name="packagesToScan" value="com.qfjy.bean"></property>
+		<!-- 设置 自定义配置 hibernate -->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+
+	</bean>
+	<!-- 4 Spring TransctionDataSource Jpa事务管理 JpaTranscationManager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactoryBean"></property>
+	</bean>
+	<!-- 5 声明式注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Spring + SpringData + JPA 配置操作 -->
+	<jpa:repositories base-package="com.qfjy.dao" entity-manager-factory-ref="entityManagerFactoryBean"></jpa:repositories>
 </beans>

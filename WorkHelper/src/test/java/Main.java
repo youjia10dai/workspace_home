@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import helper.BaseHelper;
 import helper.json.JsonHelper;
 
@@ -15,8 +14,6 @@ import helper.json.JsonHelper;
 @ContextConfiguration("classpath:applicationContext.xml")
 public class Main extends BaseHelper{
 
-	
-	
     @Autowired
     //×Ô¶¯×°Åä
     private ApplicationContext cxf;

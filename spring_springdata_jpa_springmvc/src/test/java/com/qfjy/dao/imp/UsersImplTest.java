@@ -37,39 +37,9 @@ public class UsersImplTest  {
     }
     
     @Test
-	public void findAll() {
-    	List<Users> users = dao.findAll();
-    	for (Users user : users) {
-			System.out.println(user);
-		}
-    	assertTrue(users.size() > 0);
-	}
-    
-    @Test
-    public void slectOne(){
-    	Users users = dao.selectOne(1);
-    	assertSame(users.getUname(), "1");
+    public void getById(){
+	   Users users = dao.getById(5);
+	   System.out.println(users);
     }
     
-    @Test
-    public void add(){
-    	Users users = new Users();
-    	users.setUname("10");
-    	users.setName("10");
-    	dao.add(users);
-    }
-    
-    @Test
-    public void delete(){
-    	int count = dao.delete(10);
-    	assertSame(count, 1);
-    }
-    
-    @Test
-    public void update(){
-    	Users users = new Users();
-    	users.setId(3);
-    	users.setName("3333");
-    	dao.update(users);
-    }
 }
