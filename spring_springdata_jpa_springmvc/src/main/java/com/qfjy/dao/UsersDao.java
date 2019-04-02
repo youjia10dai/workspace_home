@@ -2,6 +2,9 @@ package com.qfjy.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -9,24 +12,15 @@ import org.springframework.data.repository.query.Param;
 import com.qfjy.bean.Users;
 
 /**
+ * 第一种方式
  * 接口: Repository空接口   空接口作用 : 不再是用于规范的.用于做标记的(是一个标记接口)
  *	SpringIOC容器会默认：加@Repostory/@Service注解
- *
+ * 
+ * 第二种方式
+ *	(不采用接口继承的方式,使用添加注解的方式)
  *	@RepositoryDefinition 注解 代替 extends Repository接口
  */
 
-/**
- * @author HP
- *
- */
-/**
- * @author HP
- *
- */
-/**
- * @author HP
- *
- */
 public interface UsersDao extends Repository<Users, Integer> {
 
 	/*
@@ -143,10 +137,33 @@ public interface UsersDao extends Repository<Users, Integer> {
 	 * ?占位符方式默认从左侧:1  缺点:方法参数的位置必须要JPQL语句一一对应
 	 * :name  命名参数的方式    有参数
 	 */
-	@Query(value = " FROM User WHERE uname = ?1 and upass = ?2")
+	@Query(value = " FROM Users WHERE uname = ?1 and upass = ?2")
 	public Users login(String uname, String upass);
 
-	@Query(value = " FROM User WHERE uname = :uname and upass = :upass")
+	@Query(value = " FROM Users WHERE uname = :uname and upass = :upass")
 	public Users loginParam(@Param("uname")String uname, @Param("upass")String upass);
+	
+	//使用本地SQL语句  查询所有的用户信息  查询所有年龄在20岁以上的(包含)
+	@Query(value = "select * from users where age >= ?1", nativeQuery = true)
+	public List<Users> nativeSql(int age);
+	
+	/**
+	 * 更新操作
+	 * SpringData 方法定义规范,自定义@Query  -->查询功能
+	 * 根据主键ID,修改用户名 update users set name =?1 where id =?2
+	 * 查询使用的方法是getResultList  getSingleResult  executeUpdate
+	 */
+	@Query(value = "update users set name =?1 where id =?2", nativeQuery = true)
+	@Modifying
+	@Transactional
+	public int updateByid(String name, Integer id);
+	
+	/**
+	 * 添加操作
+	 */
+	@Query(value = "insert into users (name) values (:name)", nativeQuery = true)
+	@Modifying
+	@Transactional
+	public int insert(@Param("name")String name);
 	
 }

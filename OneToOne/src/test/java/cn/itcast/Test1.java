@@ -29,4 +29,14 @@ public class Test1 {
 		em.close();
 		factory.close();
 	}
+	
+	@Test
+	public void find(){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysqlJPA");
+		// 相当于Session
+		EntityManager em = factory.createEntityManager();
+		IdCrad crad = em.find(IdCrad.class, 1);
+		em.close();
+		factory.close();
+	}
 }

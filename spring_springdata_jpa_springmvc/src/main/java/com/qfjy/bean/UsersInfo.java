@@ -3,6 +3,8 @@ package com.qfjy.bean;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,6 +15,7 @@ import javax.persistence.Transient;
 @Table(name="usersinfo")
 public class UsersInfo {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
 //	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String id;
@@ -20,11 +23,8 @@ public class UsersInfo {
 	private String name;
 	
 	private String telphone;
-
-	@Transient
-	private Integer uid;
 	
-	@OneToOne(targetEntity=Users.class,fetch=FetchType.LAZY ) // 不能为空
+	@OneToOne(cascade = CascadeType.ALL, optional = false) // 不能为空
 	@JoinColumn(name = "uid")
 	private Users users;
 

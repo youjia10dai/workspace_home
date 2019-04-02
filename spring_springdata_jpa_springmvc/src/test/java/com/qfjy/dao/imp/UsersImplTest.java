@@ -98,8 +98,28 @@ public class UsersImplTest {
 		}
 	}
 	
-	public void logig(){
-		dao.login("", "");
+	@Test
+	public void login(){
+		Users user = dao.login("1", "11");
+		assertNotNull(user);
 	}
 
+	@Test
+	public void nativeSql(){
+		List<Users> users = dao.nativeSql(10);
+		assertTrue(users.size() > 0);
+	}
+	
+	@Test
+	public void updateById(){
+		int count = dao.updateByid("clj218", 1);
+		assertTrue(count == 1);
+	}
+	
+	@Test
+	public void insert(){
+		int count = dao.insert("可以添加");
+		assertTrue(count == 1);
+	}
+	
 }
