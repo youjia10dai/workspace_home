@@ -1,4 +1,4 @@
-package com.qfjy.dao;
+package com.qfjy.dao.f自定义的Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

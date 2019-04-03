@@ -1,4 +1,4 @@
-package com.qfjy.dao;
+package com.qfjy.dao.dJPARepository接口;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.qfjy.bean.Users;
 
-public interface UsersJPADao extends JpaRepository<Users, Integer>{
+public interface JpaRepositoryDao extends JpaRepository<Users, Integer>{
 
 	
 	//查询部分字段

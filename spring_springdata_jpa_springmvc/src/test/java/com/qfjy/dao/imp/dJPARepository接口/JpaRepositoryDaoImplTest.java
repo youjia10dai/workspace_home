@@ -1,27 +1,28 @@
-package com.qfjy.dao.imp;
+package com.qfjy.dao.imp.dJPARepository接口;
 
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.qfjy.bean.Users;
-import com.qfjy.dao.MyUsersDao;
+import com.qfjy.dao.dJPARepository接口.JpaRepositoryDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置文件的位置
 //若当前配置文件名=当前测试类名-context.xml 就可以在当前目录中查找@ContextConfiguration()
 @ContextConfiguration("classpath*:spring_core.xml")
-public class MyUserDaoTest {
-
+public class JpaRepositoryDaoImplTest {
 	@Autowired
-	private MyUsersDao dao;
+	private JpaRepositoryDao dao;
 	
 	@Test
-	public void test(){
-		Users users = dao.find(1);
-		System.out.println(users);
+	public void getById(){
+		List<Object[]> users = dao.getById(1);
+		Object[] objects = users.get(0);
+		System.out.println(objects[0]);
+		System.out.println(objects[1]);
 	}
 	
 }

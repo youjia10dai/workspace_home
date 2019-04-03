@@ -1,4 +1,4 @@
-package com.qfjy.dao.imp;
+package com.qfjy.dao.imp.b增删改查接口;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.UserCrudDao;
+import com.qfjy.dao.b增删改查接口.CrudRepositoryDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置文件的位置
 //若当前配置文件名=当前测试类名-context.xml 就可以在当前目录中查找@ContextConfiguration()
 @ContextConfiguration("classpath*:spring_core.xml")
-public class UsersCrudImpTest {
+public class CrudRepositoryDaoImplTest {
 	@Autowired
-	private UserCrudDao dao;
+	private CrudRepositoryDao dao;
 	
 	/**
 	 * 实现添加操作

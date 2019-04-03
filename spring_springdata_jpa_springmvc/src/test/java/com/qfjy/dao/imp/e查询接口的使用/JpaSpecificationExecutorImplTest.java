@@ -1,4 +1,4 @@
-package com.qfjy.dao.imp;
+package com.qfjy.dao.imp.e查询接口的使用;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.JpaSpecificationExecutorDao;
+import com.qfjy.dao.e查询接口的使用.JpaSpecificationExecutorDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置文件的位置
@@ -48,7 +48,6 @@ public class JpaSpecificationExecutorImplTest {
 				Predicate predicate = cb.equal(root.get("uname"), "qq");
 				return predicate;
 			}
-			
 		};
 		List<Users> list = dao.findAll(spec);
 		for (Users users : list) {

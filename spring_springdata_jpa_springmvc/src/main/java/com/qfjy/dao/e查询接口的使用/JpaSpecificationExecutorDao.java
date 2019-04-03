@@ -1,4 +1,4 @@
-package com.qfjy.dao;
+package com.qfjy.dao.e查询接口的使用;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

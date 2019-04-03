@@ -1,31 +1,35 @@
-package com.qfjy.dao.imp;
+package com.qfjy.dao.imp.a顶层接口;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.UsersDao;
+import com.qfjy.dao.a顶层接口.RepositoryDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 配置文件的位置
 // 若当前配置文件名=当前测试类名-context.xml 就可以在当前目录中查找@ContextConfiguration()
 @ContextConfiguration("classpath*:spring_core.xml")
-public class UsersImplTest {
+public class RepositoryDaoImplTest {
 
 	@Autowired
 	// 自动装配
 	private ApplicationContext cxf;
 
 	@Autowired
-	private UsersDao dao;
+	private RepositoryDao dao;
 
 	@Test
 	public void getAllBeans() {
@@ -120,6 +124,16 @@ public class UsersImplTest {
 	public void insert(){
 		int count = dao.insert("可以添加");
 		assertTrue(count == 1);
+	}
+	
+	@Test
+	@Rollback(false)//测试中事物默认不提交
+	@Transactional()
+	public void testTransactional(){
+		int count = dao.updateByid("clj224", 1);
+		String string = null;
+		string.charAt(0);
+		dao.insert("可以添加");
 	}
 	
 }

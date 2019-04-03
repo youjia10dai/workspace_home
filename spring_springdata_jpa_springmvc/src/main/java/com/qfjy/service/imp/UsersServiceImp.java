@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.UsersDao;
+import com.qfjy.dao.a顶层接口.RepositoryDao;
 import com.qfjy.service.UsersService;
 
 @Service
 public class UsersServiceImp implements UsersService{
 
 	@Autowired
-	private UsersDao dao;
+	private RepositoryDao dao;
 	
 	@Override
 	public Users getById(Integer id) {

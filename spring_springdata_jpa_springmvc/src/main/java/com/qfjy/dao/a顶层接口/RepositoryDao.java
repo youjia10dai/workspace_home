@@ -1,4 +1,4 @@
-package com.qfjy.dao;
+package com.qfjy.dao.a顶层接口;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import com.qfjy.bean.Users;
  *	@RepositoryDefinition 注解 代替 extends Repository接口
  */
 
-public interface UsersDao extends Repository<Users, Integer> {
+public interface RepositoryDao extends Repository<Users, Integer> {
 
 	/*
 	 * 方法声明(命名)规范: 按照Spring Data 的规范,查询方法以find | read | get 开头,By
@@ -155,7 +155,6 @@ public interface UsersDao extends Repository<Users, Integer> {
 	 */
 	@Query(value = "update users set name =?1 where id =?2", nativeQuery = true)
 	@Modifying
-	@Transactional
 	public int updateByid(String name, Integer id);
 	
 	/**
@@ -163,7 +162,6 @@ public interface UsersDao extends Repository<Users, Integer> {
 	 */
 	@Query(value = "insert into users (name) values (:name)", nativeQuery = true)
 	@Modifying
-	@Transactional
 	public int insert(@Param("name")String name);
 	
 }

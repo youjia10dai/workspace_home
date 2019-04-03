@@ -1,4 +1,4 @@
-package com.qfjy.dao.impl;
+package com.qfjy.dao.f自定义的Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.MyUsersRepository;
 
 //@Repository
 public class MyUsersDaoImpl implements MyUsersRepository{

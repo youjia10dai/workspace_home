@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.qfjy.bean.Users;
-import com.qfjy.dao.UsersPagingDao;
+import com.qfjy.dao.c分页和排序.PagingAndSortingRepositoryDao;
 import com.qfjy.service.UsersPagingService;
 
 /**
@@ -21,7 +21,7 @@ import com.qfjy.service.UsersPagingService;
 public class UsersPagingServiceImpl implements UsersPagingService {
 
 	@Autowired
-	private UsersPagingDao dao;
+	private PagingAndSortingRepositoryDao dao;
 	
 	/**
 	 *	分页的功能

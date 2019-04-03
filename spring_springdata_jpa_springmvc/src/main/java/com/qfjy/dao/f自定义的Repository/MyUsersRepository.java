@@ -1,4 +1,4 @@
-package com.qfjy.dao;
+package com.qfjy.dao.f自定义的Repository;
 
 import com.qfjy.bean.Users;
 

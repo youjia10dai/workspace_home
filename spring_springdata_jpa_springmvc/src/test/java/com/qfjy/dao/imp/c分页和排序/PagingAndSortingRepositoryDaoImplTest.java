@@ -1,4 +1,4 @@
-package com.qfjy.dao.imp;
+package com.qfjy.dao.imp.c分页和排序;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.qfjy.service.UsersPagingService;
 // 配置文件的位置
 // 若当前配置文件名=当前测试类名-context.xml 就可以在当前目录中查找@ContextConfiguration()
 @ContextConfiguration("classpath*:spring_core.xml")
-public class UsersPagingServiceTest {
+public class PagingAndSortingRepositoryDaoImplTest {
 	@Autowired
 	private UsersPagingService service;
 
