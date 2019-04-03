@@ -79,5 +79,10 @@ public class Users {
 	public void setUsersInfo(UsersInfo usersInfo) {
 		this.usersInfo = usersInfo;
 	}
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", uname=" + uname + ", upass=" + upass + ", name=" + name + ", remark=" + remark
+				+ ", age=" + age + ", createDate=" + createDate + ", usersInfoTelphone=" + usersInfoTelphone + "]";
+	}
 	
 }
