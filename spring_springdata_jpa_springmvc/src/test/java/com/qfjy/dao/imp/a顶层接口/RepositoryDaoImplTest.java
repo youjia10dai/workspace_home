@@ -1,12 +1,12 @@
 package com.qfjy.dao.imp.a顶层接口;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
+import org.apache.log4j.chainsaw.Main;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.qfjy.bean.Users;
 import com.qfjy.dao.a顶层接口.RepositoryDao;
 
@@ -127,13 +127,11 @@ public class RepositoryDaoImplTest {
 	}
 	
 	@Test
-	@Rollback(false)//测试中事物默认不提交
+	@Rollback(false)
 	@Transactional()
 	public void testTransactional(){
-		int count = dao.updateByid("clj224", 1);
-		String string = null;
-		string.charAt(0);
+		int count = dao.updateByid("clj228", 1);
+//		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 		dao.insert("可以添加");
 	}
-	
 }
