@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 /**
+ * 启动SpringBoot应用
  * @SpringBootApplication 标注一个主程序类,说明这是个springboot应用
  *
  */
