@@ -2,8 +2,11 @@ package sutdy.fastjson.json.基础使用;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
+
 import com.alibaba.fastjson.JSON;
+
 import sutdy.fastjson.json.基础使用.model.User;
 import sutdy.fastjson.json.基础使用.model.UserGroup;
 
@@ -68,5 +71,12 @@ public class JsonTest {
         String jsonStr3 = "{'name':'userGroup','users':[{'password':'123123','username':'zhangsan'},{'password':'321321','username':'lisi'}]}";
         UserGroup userGroup = JSON.parseObject(jsonStr3, UserGroup.class);
         System.out.println("json字符串转复杂java对象:"+userGroup);  
+    }
+    
+    @Test
+    public void arrayTOJson(){
+    	String[] strs = new String[]{"ss", "bb", "cc"};
+    	String jsonString = JSON.toJSONString(strs);
+    	System.out.println(jsonString);
     }
 }
