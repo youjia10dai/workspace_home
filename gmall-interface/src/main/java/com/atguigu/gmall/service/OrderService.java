@@ -1,10 +1,14 @@
 package com.atguigu.gmall.service;
 
+import java.util.List;
+
+import com.atguigu.gmall.bean.UserAddress;
+
 public interface OrderService {
 
 	/**
-	 * ³õÊ¼»¯ÓÃ»§¶©µ¥ 
+	 * ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 */
-	public void initOrder(String userId);
+	public List<UserAddress> initOrder(String userId);
 	
 }

@@ -13,7 +13,7 @@
 	<!-- <dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry> -->
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"></dubbo:registry>
 	
-	<!-- 3、指定通信规则（通信协议？通信端口） -->
+	<!-- 3、指定通信规则（通信协议？通信端口）,这个有提供者定义 -->
 	<dubbo:protocol name="dubbo" port="20882"></dubbo:protocol>
 	
 	<!-- 4、暴露服务   ref：指向服务的真正的实现对象 -->
@@ -25,7 +25,7 @@
 	<!-- 5.服务的实现 -->
 	<bean id="userServiceImpl" class="com.atguigu.gmall.service.impl.UserServiceImpl"></bean>
 	
-	<!-- 连接监控中心,这个是自动查找 -->
+	<!-- 连接监控中心,这个是自动查找,自动在zookeeper中查找 -->
 	<dubbo:monitor protocol="registry"></dubbo:monitor>
 	
 </beans>
