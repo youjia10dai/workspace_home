@@ -11,8 +11,8 @@ public class MailApplication {
 	public static void main(String[] args) throws IOException {
 		ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext("consumer.xml");
 		ioc.start();
-		OrderService bean = ioc.getBean(OrderService.class);
-		bean.initOrder("1");
+//		OrderService bean = ioc.getBean(OrderService.class);
+//		bean.initOrder("1");
 		System.in.read();
 	}
 }
