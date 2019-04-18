@@ -14,14 +14,23 @@
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"></dubbo:registry>
 	
 	<!-- 3、指定通信规则（通信协议？通信端口） -->
-	<dubbo:protocol name="dubbo" port="20886"></dubbo:protocol>
+	<dubbo:protocol name="dubbo" port="20884"></dubbo:protocol>
 	
 	<!-- 4、暴露服务   ref：指向服务的真正的实现对象 -->
+	<!-- timeout="3000" 设置超时,如果消费者和提供者在同一层级都设置了,以消费者的设置优先 -->
 	<dubbo:service interface="com.atguigu.gmall.service.UserService" 
-		ref="userServiceImpl">
+		ref="userServiceImpl" version="1.0.0">
+	</dubbo:service>
+	
+	<dubbo:service interface="com.atguigu.gmall.service.UserService" 
+		ref="userServiceImpl2" version="2.0.0" stub="com.atguigu.gmall.service.impl.UserServiceStub">
 	</dubbo:service>
 	
 	<bean id="userServiceImpl" class="com.atguigu.gmall.service.impl.UserServiceImpl"></bean>
+	<bean id="userServiceImpl2" class="com.atguigu.gmall.service.impl.UserServiceImpl2"></bean>
+	
+	<!-- 设置全局生产者, dubbo:consumer 设置全局的消费者 -->
+	<dubbo:provider timeout="3000"></dubbo:provider>
 	
 	<!-- 连接监控中心 -->
 	<!-- <dubbo:monitor protocol="registry"></dubbo:monitor> -->

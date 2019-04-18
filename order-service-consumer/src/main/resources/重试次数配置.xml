@@ -9,29 +9,33 @@
 		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	<context:component-scan base-package="com.atguigu.gmall.service.impl"></context:component-scan>
 
+	<!-- 重试次数,一般与超时属性一起配置 -->
 
 	<dubbo:application name="order-service-consumer"></dubbo:application>
 	
 	<dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
 	
-	<!--  配置本地存根-->
-	
-	<!--声明需要调用的远程服务的接口；生成远程服务代理  -->
-	<!-- 
-		1）、精确优先 (方法级优先，接口级次之，全局配置再次之)
-		2）、消费者设置优先(如果级别一样，则消费方优先，提供方次之)
-	-->
-	<!-- timeout="0" 默认是1000ms-->
-	<!-- retries="":重试次数，不包含第一次调用，0代表不重试-->
-	<!-- 幂等（设置重试次数）【查询、删除、修改】、非幂等（不能设置重试次数）【新增】 -->
+	<!-- 声明需要调用的远程服务的接口:生成远程服务代理 -->
+	<!-- 检查1:  单个配置 -->
+	<!-- check="false" 启动时不会检查引用的服务是否提供,只有在调用的时候才会去检查 -->
+	<!-- timeout="1000" 超时  毫秒 默认是1000毫秒 -->
+	<!-- 配置的优先级 
+		 1.精确优先(方法级优先,接口级次之,全局配置再次之)
+		 2.消费者设置优先(如果级别一样,则消费方法优先,提供方次之)
+	 -->
+	 <!-- retries="" 重试次数,不包含第一次调用 -->
+	 <!-- 幂等(设置重试次数,执行多次和执行一次效果是一样)[查询, 删除, 修改]  非幂等(不能设置重试次数) -->
 	<dubbo:reference interface="com.atguigu.gmall.service.UserService" 
-		id="userService" timeout="5000" retries="3" version="*">
-		<!-- <dubbo:method name="getUserAddressList" timeout="1000"></dubbo:method> -->
+		id="userService" check="false" timeout="4000" retries="6">
 	</dubbo:reference>
-		
-	<!-- 配置当前消费者的统一规则：所有的服务都不检查 -->
-	<dubbo:consumer check="false" timeout="5000"></dubbo:consumer>
-
+	
+	<!-- 检查2:  统一配置 -->
+	<!-- 配置当前消费者的统一规则:所有服务都不检查 -->
+	<dubbo:consumer check="false" timeout="1000"></dubbo:consumer>
+	
+	<!-- 检查3:  注册中心也不检查 -->
+	<dubbo:registry check="false"></dubbo:registry>
+	
 	<!-- 关闭dubbo的监控 -->
 	<!-- <dubbo:monitor protocol="registry"></dubbo:monitor> -->
 	<!-- <dubbo:monitor address="127.0.0.1:7070"></dubbo:monitor> -->

@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<UserAddress> initOrder(String userId) {
 		//1.查询用户的收货地址
+		System.out.println(userService.toString());
 		List<UserAddress> userAddressList = userService.getUserAddressList(userId);
 		for (UserAddress userAddress : userAddressList) {
 			System.out.println(userAddress);
