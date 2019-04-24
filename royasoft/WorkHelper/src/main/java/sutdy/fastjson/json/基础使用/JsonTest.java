@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import sutdy.fastjson.json.基础使用.model.User;
 import sutdy.fastjson.json.基础使用.model.UserGroup;
@@ -79,4 +80,35 @@ public class JsonTest {
     	String jsonString = JSON.toJSONString(strs);
     	System.out.println(jsonString);
     }
+    
+    @Test
+    public void StringArrayToJson(){
+    	JSONObject obj = new JSONObject();
+    	obj.put("111", "11");
+    	System.out.println(new String[]{"1", "2"});
+    	System.out.println(JSON.toJSONString(new String[]{"1", "2"}));
+    	obj.put("param", JSON.toJSONString(new String[]{"1", "2"}));
+    	System.out.println(obj.get("param").toString());
+    	System.out.println(obj.toJSONString());
+    }
+    
+    @Test
+    public void jsonObjectTest() {
+    	JSONObject obj = new JSONObject();
+    	obj.put("111", "11");
+    	System.out.println(obj);
+    }
+    
+    @Test
+    public void stringTest(){
+    	String string = "来自陈吕奖：呃呃【塞上彩云】";
+    	String name = string.substring(string.indexOf("自") + 1 , string.indexOf("："));
+    	System.out.println(name);
+    	
+    	String context = string.substring(string.indexOf("：") + 1 , string.indexOf("【"));
+    	System.out.println(context);
+    	
+    	
+    } 
+    
 }
