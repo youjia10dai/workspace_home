@@ -17,4 +17,13 @@ public class StringTest {
 		System.out.println("dd");
 	}
 	
+	@Test
+	public void stringTest() {
+		String test = "http://www.taobao.com?activityName=555";
+        String activityName = test.substring(test.lastIndexOf("=") + 1);
+        test = test.substring(0, test.indexOf("?"));
+        System.out.println(activityName);
+        System.out.println(test);
+	}
+	
 }
