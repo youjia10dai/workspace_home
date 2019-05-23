@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
@@ -45,6 +46,7 @@ public class Order {
 	 */
 	@OneToMany(cascade={CascadeType.REMOVE,CascadeType.REFRESH,CascadeType.PERSIST,CascadeType.MERGE},
 			fetch=FetchType.LAZY,mappedBy="order")//被维护端要指定维护端的维护信息
+	@JoinColumn()
 	public List<OrderItem> getOrders() {
 		return orders;
 	}

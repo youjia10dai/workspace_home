@@ -1,52 +1,27 @@
-package com.royasoft.sailevent.impl.entity;
+package sutdy.spring.beanutils.entity;
+
+
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 /**
  * @author clj
  * @date 2019-05-05
- * 选举的用户
  */
-@Entity
-@Table(name = "vwt_set_sail_event_user")
+
 public class SailUser implements Serializable {
 	private static final long serialVersionUID = 3333203914045554199L;
 
-	/**
-	 * 用户ID
-	 */
-	@Id
-    @Column(name = "user_id")
 	private String userId;
 	
-	/**
-	 * 单元名称
-	 */
-	@Column(name = "area_name")
 	private String areaName;
 	
-	/**
-	 * 公司名称
-	 */
-	@Column(name = "company_name")
+
 	private String companyName;
 	
-	@ManyToMany(cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
-	@JoinTable(name="vwt_set_sail_event_user_club",inverseJoinColumns=@JoinColumn(name="club_id")
-	,joinColumns=@JoinColumn(name="user_id"))
-	//多对多是根据关联表来维护数据的
 	private Set<SailClub> sailClubs = new HashSet<SailClub>();
 	
 	public Set<SailClub> getSailClubs() {
@@ -79,6 +54,12 @@ public class SailUser implements Serializable {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+	@Override
+	public String toString() {
+		return "SailUser [userId=" + userId + ", areaName=" + areaName + ", companyName=" + companyName + ", sailClubs="
+				+ sailClubs + "]";
 	}
 	
 }

@@ -1,0 +1,33 @@
+{
+	userId: '1',
+	array:[
+		{
+			clubId: '1',
+			cheakArr: [1,2,3],
+			member: {
+				name1:'11',
+				tel1:'11',
+				name2:'22',
+				tel2:'22',
+				name3:'33',
+				tel3:'33',
+				name4:'44',
+				tel4:'44'
+			}
+		},
+		{
+			clubId: '2',
+			cheakArr: [3,4],
+			member: {
+				name1:'11',
+				tel1:'11',
+				name2:'22',
+				tel2:'22',
+				name3:'33',
+				tel3:'33',
+				name4:'44',
+				tel4:'44'
+			}
+		}
+	]
+}

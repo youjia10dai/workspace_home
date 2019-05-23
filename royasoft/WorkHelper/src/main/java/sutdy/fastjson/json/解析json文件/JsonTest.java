@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 
+import sutdy.fastjson.json.解析json文件.model.President;
+import sutdy.fastjson.json.解析json文件.model.President.Arrayy;
+import sutdy.fastjson.json.解析json文件.model.President.Arrayy.Member;
 import sutdy.fastjson.json.解析json文件.model.Query;
 
 
@@ -41,4 +44,21 @@ public class JsonTest {
 		System.out.println(queryList);
 	}
 
+	@Test
+	public void test2() throws IOException {
+		// 读取类路径下的query.json文件
+		InputStream inputStream = this.getClass().getResourceAsStream("president.json");
+		String jsontext = IOUtils.toString(inputStream, "utf8");
+		logger.info(jsontext);
+		// 先将字符jie串转为List数组
+		President jsonObject =  JSON.parseObject(jsontext, President.class);
+		List<Arrayy> array = jsonObject.getArray();
+		Arrayy arrayy = array.get(0);
+		Integer[] cheakArr = arrayy.getCheakArr();
+		System.out.println("111111  " + cheakArr[0]);
+		Member member = arrayy.getMember();
+		System.out.println(member.getName2());
+		
+	}
+	
 }

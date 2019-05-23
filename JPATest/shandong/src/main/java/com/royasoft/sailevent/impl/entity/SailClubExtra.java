@@ -1,6 +1,7 @@
 package com.royasoft.sailevent.impl.entity;
 
-import javax.annotation.Generated;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +16,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "vwt_set_sail_event_club_extra")
-public class SailClubExtra {
+public class SailClubExtra implements Serializable{
 	
+	private static final long serialVersionUID = 3089202985247144450L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -34,6 +37,16 @@ public class SailClubExtra {
 	@Column(name = "club_name")
 	private String clubName;
 	
+	public SailClubExtra() {
+		super();
+	}
+
+	public SailClubExtra(String userId, String clubName) {
+		super();
+		this.userId = userId;
+		this.clubName = clubName;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

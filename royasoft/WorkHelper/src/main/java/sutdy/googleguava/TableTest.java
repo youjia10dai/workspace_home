@@ -13,19 +13,19 @@ import com.google.common.collect.Table;
  */
 public class TableTest {
 	//本质上用 HashMap<R, HashMap<C, V>>实现；
-	//    				 行 不可重复    列 可重复      值
+	//    		           行 不可重复        列 可重复      值
 	//  多对一(一行对应一列, 一列可以对应多行)
 	public static Table<String, Operator, Object> conditionTable = HashBasedTable.create();
 	static{
 		//初始化数据
-        conditionTable.put("name", Operator.LIKE, "name");
-        conditionTable.put("type", Operator.EQ, "type");
-        conditionTable.put("applyType", Operator.EQ, "applyType");
-        conditionTable.put("isSystemApp", Operator.EQ, "isSystemApp");
-        conditionTable.put("regionName", Operator.EQ, "regionName");
-        conditionTable.put("createUserId", Operator.EQ, "createUserId");
-        conditionTable.put("corpId", Operator.EQ, "corpId1");
-        conditionTable.put("corpId", Operator.EQ, "corpId");
+        conditionTable.put("name1", Operator.LIKE, "name");
+        conditionTable.put("type1", Operator.EQ, "type");
+        conditionTable.put("applyType1", Operator.EQ, "applyType");
+        conditionTable.put("isSystemApp1", Operator.EQ, "isSystemApp");
+        conditionTable.put("regionName1", Operator.EQ, "regionName");
+        conditionTable.put("createUserId1", Operator.EQ, "createUserId");
+        conditionTable.put("corpId1", Operator.EQ, "corpId1");
+        conditionTable.put("corpId1", Operator.EQ, "corpId");
 	}
 	
 	/**
