@@ -25,7 +25,7 @@
 		<jpa.version>1.0.1.Final</jpa.version>
 		<hibernate.version>4.2.1.Final</hibernate.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<dependencies>
