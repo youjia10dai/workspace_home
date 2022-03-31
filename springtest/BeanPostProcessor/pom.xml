@@ -16,7 +16,7 @@
 		</plugins>
 	</build>
 	<properties>
-		<spring.verison>4.3.8.RELEASE</spring.verison>
+		<spring.verison>5.3.18</spring.verison>
 		<fastjson.version>1.2.7</fastjson.version>
 		<logback.version>1.1.2</logback.version>
 		<slf4j.version>1.7.7</slf4j.version>
